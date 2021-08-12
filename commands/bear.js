@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Food = require("../shared/bear_food");
+const Facts = require("../shared/bear_facts");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -40,7 +41,8 @@ module.exports = {
         return await feed(interaction);
       }
       case "fact": {
-        return await interaction.reply(`Bears are awesome!`);
+        const fact = Facts[Math.floor(Math.random() * Facts.length)];
+        return await interaction.reply(fact);
       }
     }
     return interaction.reply({
